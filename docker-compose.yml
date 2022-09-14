@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  postgres:
+    image: "postgres:11"
+    container_name: "sb_admin_postgres"
+    ports:
+      - "54320:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=userpassword
+      - POSTGRES_DB=realworld
+    networks:
+      - admin_backend_network
+
+  admin_backend_deno:
+    container_name: admin_backend_deno
+    working_dir: /var/www/src
+    build:
+      context: .
+      dockerfile: .docker/admin_backend.dockerfile
+    command: bash -c "cd /var/www/src && deno run -A --watch --unstable app.ts"
+    volumes:
+      - ./src:/var/www/src
+    ports:
+      - "1667:1667"
+    networks:
+      - admin_backend_network
+
+networks:
+  admin_backend_network:
+    driver: bridge
