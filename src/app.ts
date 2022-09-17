@@ -1,4 +1,5 @@
 import * as Drash from "https://deno.land/x/drash@v2.6.0/mod.ts";
+import AdminRequestResource from "./resources/admin_requests_resource.ts";
 
 // Create your resource
 
@@ -19,7 +20,7 @@ const server = new Drash.Server({
     hostname: "admin_backend_deno",
     port: 1667,
     protocol: "http",
-    resources: [HomeResource],
+    resources: [HomeResource, AdminRequestResource],
 });
 
 server.run();

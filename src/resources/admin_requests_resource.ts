@@ -1,7 +1,7 @@
 import type {Drash} from "../deps.ts";
 import BaseResource from "./base_resource.ts";
 import UserModel from "../models/user_model.ts";
-import Admin_requests_model, {AdminRequestEntity, AdminRequestModel} from "../models/admin_requests_model.ts";
+import {AdminRequestEntity, AdminRequestModel} from "../models/admin_requests_model.ts";
 
 class AdminRequestResource extends BaseResource {
     paths = [
@@ -149,11 +149,14 @@ class AdminRequestResource extends BaseResource {
         request: Drash.Request,
         response: Drash.Response,
     ) {
-        const statusParam = request.queryParam("status");
+
+
         const requestedById = request.queryParam("requestedBy");
         const reviewedById = request.queryParam("reviewedBy");
-
-
+        const statusParam = request.queryParam("status");
+        console.log(reviewedById)
+        console.log(requestedById)
+        console.log(statusParam)
         return response.json({
             statusParam,
             requestedById,

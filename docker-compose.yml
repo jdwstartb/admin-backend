@@ -9,7 +9,7 @@ services:
     environment:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=userpassword
-      - POSTGRES_DB=realworld
+      - POSTGRES_DB=admin_backend_db
     networks:
       - admin_backend_network
 
